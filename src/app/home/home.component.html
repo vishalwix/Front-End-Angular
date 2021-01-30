@@ -1,0 +1,46 @@
+<mat-card class="example-card">
+<div *ngIf="info.token; else loggedOut">
+  <p>
+    <strong>Username:</strong> {{info.username}}<br/>
+  <!-- <strong>Roles:</strong> {{info.authorities}}<br />
+    <strong>Token:</strong> {{info.token}}.-->
+  </p>
+  <button class="btn btn-warning" (click)="logout()">Logout</button>
+  <br>
+<h2> Employee List</h2>
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th> First Name</th>
+            <th> Last Name </th>
+            <th> Address</th>
+            <th> DOB</th>
+            <th> Mobile</th>
+            <th> City</th>
+            <th> Actions </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let employee of employees" >
+            <td> {{ employee.firstName }} </td>
+            <td> {{ employee.lastName }} </td>
+            <td> {{ employee.address }} </td>
+            <td> {{ employee.dob }} </td>
+            <td> {{ employee.mobile }}</td>
+            <td> {{ employee.city }} </td>
+            <td>
+                <button (click) = "updateEmployee(employee.id)" class = "btn btn-primary"> Update</button>
+                <button (click) = "deleteEmployee(employee.id)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+</div>
+<ng-template #loggedOut>
+  Please login, To see employee details.
+</ng-template>
+</mat-card>

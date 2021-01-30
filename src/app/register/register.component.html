@@ -1,0 +1,80 @@
+<div *ngIf="isSignedUp; else signupForm">
+  Your registration is successful. Please login!
+</div>
+
+<ng-template #signupForm>
+  <div class="row col-sm-6" style="max-width:350px;">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+      <div class="form-group">
+        <label for="first_name">First name</label>
+        <input type="text" class="form-control" name="first_name" [(ngModel)]="form.first_name" #first_name="ngModel" required />
+        <div *ngIf="f.submitted && first_name.invalid">
+          <div *ngIf="first_name.errors.required">First Name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input type="text" class="form-control" name="last_name" [(ngModel)]="form.last_name" #last_name="ngModel"
+          required />
+        <div *ngIf="f.submitted && last_name.invalid">
+          <div *ngIf="last_name.errors.required">Last name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dob">DOB</label>
+        <input type="text" class="form-control" name="dob" [(ngModel)]="form.dob" #dob="ngModel" required />
+        <div *ngIf="f.submitted && dob.invalid">
+          <div *ngIf="dob.errors.required">DOB is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
+          required/>
+        <div *ngIf="f.submitted && username.invalid">
+          <div *ngIf="username.errors.required">Username is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required email/>
+        <div *ngIf="f.submitted && email.invalid">
+          <div *ngIf="email.errors.required">Email is required</div>
+          <div *ngIf="email.errors.email">Email must be a valid email address</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel" minlength="6"
+          required />
+          <div *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="company">Company</label>
+        <input type="text" class="form-control" name="company" [(ngModel)]="form.company" #company="ngModel" required/>
+        <div *ngIf="f.submitted && company.invalid">
+          <div *ngIf="company.errors.required">Company is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" class="form-control" name="address" [(ngModel)]="form.address" #address="ngModel"
+          required />
+        <div *ngIf="f.submitted && address.invalid">
+          <div *ngIf="address.errors.required">Address is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary">Register</button>
+        <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+          Signup failed!<br/>{{errorMessage}}
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
